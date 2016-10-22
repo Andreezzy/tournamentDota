@@ -1,6 +1,16 @@
 Rails.application.routes.draw do
-  resources :players
+  devise_for :users, controllers: {
+    omniauth_callbacks: "omniauth_callbacks"
+  }
 
+  post '/custom_sign_up', to: "omniauth_callbacks#custom_sign_up"
+
+  root 'main#home'
+  get '/inscribir', to: "main#inscripcion"
+  post '/check_ticket', to: "main#check_ticket"
+  get '/check_ticket', to: "main#inscripcion"
+
+  resources :players
   resources :teams
 
   # The priority is based upon order of creation: first created -> highest priority.
