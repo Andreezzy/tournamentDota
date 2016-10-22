@@ -11,7 +11,8 @@ class OmniauthCallbacksController < ApplicationController
 
 		session["devise.auth"] = request.env["omniauth.auth"]
 
-		render :edit
+		#render :edit
+		sign_in_and_redirect @user, event: :authentication
 
 	end
 
