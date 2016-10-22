@@ -12,10 +12,6 @@ class CreateSelecteds < ActiveRecord::Migration
       t.timestamps null: false
     end
     add_foreign_key :selecteds, :heros
-    add_foreign_key :selecteds, :heros
-    add_foreign_key :selecteds, :heros
-    add_foreign_key :selecteds, :heros
-    add_foreign_key :selecteds, :heros
     add_foreign_key :selecteds, :matches
   end
 end

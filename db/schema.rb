@@ -108,16 +108,16 @@ ActiveRecord::Schema.define(version: 20161022181205) do
   create_table "teams", force: :cascade do |t|
     t.string   "name"
     t.string   "logo"
-    t.string   "semester",      limit: 2
-    t.integer  "perfomance_id"
+    t.string   "semester",       limit: 2
+    t.integer  "performance_id"
     t.integer  "key_id"
     t.integer  "phase_id"
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
   end
 
   add_index "teams", ["key_id"], name: "index_teams_on_key_id"
-  add_index "teams", ["perfomance_id"], name: "index_teams_on_perfomance_id"
+  add_index "teams", ["performance_id"], name: "index_teams_on_performance_id"
   add_index "teams", ["phase_id"], name: "index_teams_on_phase_id"
 
   create_table "upperbrackets", force: :cascade do |t|

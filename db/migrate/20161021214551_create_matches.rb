@@ -14,7 +14,6 @@ class CreateMatches < ActiveRecord::Migration
       t.timestamps null: false
     end
     add_foreign_key :matches, :teams
-    add_foreign_key :matches, :teams
     add_foreign_key :matches, :phases
   end
 end
