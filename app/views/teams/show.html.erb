@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @team.name %>
+</p>
+
+<p>
+  <strong>Logo:</strong>
+  <%= @team.logo %>
+</p>
+
+<p>
+  <strong>Semester:</strong>
+  <%= @team.semester %>
+</p>
+
+<p>
+  <strong>Perfomance:</strong>
+  <%= @team.perfomance %>
+</p>
+
+<p>
+  <strong>Key:</strong>
+  <%= @team.key %>
+</p>
+
+<p>
+  <strong>Phase:</strong>
+  <%= @team.phase %>
+</p>
+
+<%= link_to 'Edit', edit_team_path(@team) %> |
+<%= link_to 'Back', teams_path %>
