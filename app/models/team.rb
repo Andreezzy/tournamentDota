@@ -7,5 +7,4 @@ class Team < ActiveRecord::Base
   has_many :lowerbrackets
   has_many :upperbrackets
   has_many :matches
-  has_many :matches
 end

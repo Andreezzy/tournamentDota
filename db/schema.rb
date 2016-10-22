@@ -57,8 +57,6 @@ ActiveRecord::Schema.define(version: 20161022181205) do
   end
 
   add_index "matches", ["phase_id"], name: "index_matches_on_phase_id"
-  add_index "matches", ["team_1_id"], name: "index_matches_on_team_1_id"
-  add_index "matches", ["team_2_id"], name: "index_matches_on_team_2_id"
 
   create_table "performances", force: :cascade do |t|
     t.integer  "games"
@@ -87,11 +85,11 @@ ActiveRecord::Schema.define(version: 20161022181205) do
   add_index "players", ["team_id"], name: "index_players_on_team_id"
 
   create_table "selecteds", force: :cascade do |t|
-    t.integer  "pick_1"
-    t.integer  "pick_2"
-    t.integer  "pick_3"
-    t.integer  "pick_4"
-    t.integer  "pick_5"
+    t.integer  "pick_1_id"
+    t.integer  "pick_2_id"
+    t.integer  "pick_3_id"
+    t.integer  "pick_4_id"
+    t.integer  "pick_5_id"
     t.integer  "match_id"
     t.string   "bando",      limit: 7
     t.datetime "created_at",           null: false
@@ -99,11 +97,6 @@ ActiveRecord::Schema.define(version: 20161022181205) do
   end
 
   add_index "selecteds", ["match_id"], name: "index_selecteds_on_match_id"
-  add_index "selecteds", ["pick_1"], name: "index_selecteds_on_pick_1"
-  add_index "selecteds", ["pick_2"], name: "index_selecteds_on_pick_2"
-  add_index "selecteds", ["pick_3"], name: "index_selecteds_on_pick_3"
-  add_index "selecteds", ["pick_4"], name: "index_selecteds_on_pick_4"
-  add_index "selecteds", ["pick_5"], name: "index_selecteds_on_pick_5"
 
   create_table "teams", force: :cascade do |t|
     t.string   "name"
