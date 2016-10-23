@@ -31,6 +31,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
       # t.datetime :locked_at
       t.string :username, null: false, default: ""
       t.string :name
+      t.string :first_name
       t.string :last_name
       t.text :bio
 
@@ -38,7 +39,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.string :uid
       t.string :provider
       t.integer  :permission_level, default: 1
-      t.string :img
+      t.string :image
       t.timestamps null: false
     end
 

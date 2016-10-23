@@ -135,12 +135,13 @@ ActiveRecord::Schema.define(version: 20161022181205) do
     t.string   "last_sign_in_ip"
     t.string   "username",               default: "", null: false
     t.string   "name"
+    t.string   "first_name"
     t.string   "last_name"
     t.text     "bio"
     t.string   "uid"
     t.string   "provider"
     t.integer  "permission_level",       default: 1
-    t.string   "img"
+    t.string   "image"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
   end
