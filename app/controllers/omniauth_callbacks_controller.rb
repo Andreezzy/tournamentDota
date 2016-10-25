@@ -4,6 +4,10 @@ class OmniauthCallbacksController < ApplicationController
 		@user = User.from_omniauth(request.env["omniauth.auth"])
 		#raise request.env["omniauth.auth"].to_yaml
 		if @user.persisted?
+			if @user.player_id.nil?
+				@player = Player.create()
+        @user.update(player_id: @player.id)
+      end
 			@user.remember_me = true
 			sign_in_and_redirect @user, event: :authentication
 			return
