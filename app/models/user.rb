@@ -17,8 +17,8 @@ class User < ActiveRecord::Base
         user.last_name = auth[:info][:last_name]
   			user.name = auth[:info][:name]
         user.image = auth[:info][:image]
-        #@player = Player.create()
-        #user.player_id = @player.id
+        @player = Player.create()
+        user.player_id = @player.id
   		end
   		user.password = Devise.friendly_token[0,20]
   	end
