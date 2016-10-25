@@ -1,7 +1,7 @@
 <p id="notice"><%= notice %></p>
-
+<h2>Informacion del Equipo</h2>
 <p>
-  <strong>Name:</strong>
+  <strong>Nombre:</strong>
   <%= @team.name %>
 </p>
 
@@ -11,7 +11,7 @@
 </p>
 
 <p>
-  <strong>Semester:</strong>
+  <strong>Semestre:</strong>
   <%= @team.semester %>
 </p>
 
@@ -22,7 +22,7 @@
 
 <p>
   <strong>Key:</strong>
-  <%= @team.key %>
+  <%= @team.key.des %>
 </p>
 
 <p>
@@ -30,5 +30,30 @@
   <%= @team.phase %>
 </p>
 
-<%= link_to 'Edit', edit_team_path(@team) %> |
-<%= link_to 'Back', teams_path %>
+<h1>Lista de Jugadores</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>DNI Dotero</th>
+      <th>Nickname</th>
+      <th>Nombre</th>
+      <th>Apellidos</th>
+      <th>Telefono</th>
+      <th>Team</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @players.each do |player| %>
+      <tr>
+        <td><%= player.dni_dotero %></td>
+        <td><%= player.nickname %></td>
+        <td><%= player.name %></td>
+        <td><%= player.lastname %></td>
+        <td><%= player.phone %></td>
+        <td><%= player.team.name %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

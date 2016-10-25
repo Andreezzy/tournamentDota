@@ -1,17 +1,22 @@
 Rails.application.routes.draw do
-  devise_for :users, controllers: {
+  devise_for :users, skip: [:registrations], controllers: {
     omniauth_callbacks: "omniauth_callbacks"
   }
 
   post '/custom_sign_up', to: "omniauth_callbacks#custom_sign_up"
 
   root 'main#home'
-  get '/inscribir', to: "main#inscripcion"
-  post '/check_ticket', to: "main#check_ticket"
-  get '/check_ticket', to: "main#inscripcion"
+  #Por arreglar for nil:Nilclass
+  get '/completar_registro', to: "main#edit"
 
-  resources :players
-  resources :teams
+  get '/inscribir', to: "main#inscripcion"
+  get '/unirse', to: "main#unirse"
+  post '/check_ticket', to: "main#check_ticket"
+  #get '/check_ticket', to: "main#inscripcion"
+  
+  resources :teams do
+    resources :players
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

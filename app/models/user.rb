@@ -5,7 +5,9 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable, :omniauthable,
           :omniauth_providers => [:facebook]
   include PermissionsConcern
-
+  belongs_to :team
+  belongs_to :player
+  
   def self.from_omniauth(auth)
   	where(provider: auth["provider"], uid: auth["uid"]).first_or_create do |user|
   		if auth[:info]
@@ -15,6 +17,8 @@ class User < ActiveRecord::Base
         user.last_name = auth[:info][:last_name]
   			user.name = auth[:info][:name]
         user.image = auth[:info][:image]
+        @player = Player.create()
+        user.player_id = @player.id
   		end
   		user.password = Devise.friendly_token[0,20]
   	end

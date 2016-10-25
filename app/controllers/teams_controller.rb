@@ -1,6 +1,7 @@
 class TeamsController < ApplicationController
   before_action :set_team, only: [:show, :edit, :update, :destroy]
-
+  before_action :authenticate_user!, only: [:new, :show, :create]
+  before_action :authenticate_admin!, except: [:new, :show, :create]
   # GET /teams
   # GET /teams.json
   def index
@@ -10,10 +11,20 @@ class TeamsController < ApplicationController
   # GET /teams/1
   # GET /teams/1.json
   def show
+    unless current_user.team_id == params[:id].to_i && current_user.is_user?
+      redirect_to root_path
+    end
+    @player = Player.new
+    @players = @team.players
   end
 
   # GET /teams/new
   def new
+    unless current_user.team.nil?
+      flash[:alert] = "YA REGISTRASTE UN EQUIPO"
+      redirect_to root_path
+      return
+    end
     @team = Team.new
   end
 
@@ -25,9 +36,21 @@ class TeamsController < ApplicationController
   # POST /teams.json
   def create
     @team = Team.new(team_params)
+    #raise @key.to_yaml
+
+    @key = Key.find_by(des: params.require(:team).permit(:key)[:key])
+    if @key.nil? || !@key.active
+      flash[:alert] = "TICKET NO VALIDO"
+      redirect_to "/inscribir"
+      return
+    end
 
     respond_to do |format|
       if @team.save
+        @team.update(key_id: @key.id)
+        @key.update(active: false)
+        current_user.update(team_id: @team.id)
+        current_user.player.update(team_id: @team.id)
         format.html { redirect_to @team, notice: 'Team was successfully created.' }
         format.json { render :show, status: :created, location: @team }
       else
@@ -69,6 +92,6 @@ class TeamsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def team_params
-      params.require(:team).permit(:name, :logo, :semester, :perfomance_id, :key_id, :phase_id)
+      params.require(:team).permit(:name, :logo, :semester)
     end
 end

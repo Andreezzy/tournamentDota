@@ -1,6 +1,7 @@
 class CreatePlayers < ActiveRecord::Migration
   def change
     create_table :players do |t|
+      t.string :dni_dotero
       t.string :nickname
       t.string :name
       t.string :lastname

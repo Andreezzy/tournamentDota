@@ -12,16 +12,20 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :name %><br>
+    <%= f.label :name, "Nombre" %><br>
     <%= f.text_field :name %>
   </div>
   <div class="field">
-    <%= f.label :logo %><br>
+    <%= f.label :logo, "Logo(Link)" %><br>
     <%= f.text_field :logo %>
   </div>
   <div class="field">
-    <%= f.label :semester %><br>
+    <%= f.label :semester, "Semestre" %><br>
     <%= f.text_field :semester %>
+  </div>
+  <div class="field">
+    <%= f.label :key, "Key" %><br>
+    <%= f.text_field :key %>
   </div>
   <div class="actions">
     <%= f.submit %>

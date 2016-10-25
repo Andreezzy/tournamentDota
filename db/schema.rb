@@ -73,6 +73,7 @@ ActiveRecord::Schema.define(version: 20161022181205) do
   end
 
   create_table "players", force: :cascade do |t|
+    t.string   "dni_dotero"
     t.string   "nickname"
     t.string   "name"
     t.string   "lastname"
@@ -138,6 +139,8 @@ ActiveRecord::Schema.define(version: 20161022181205) do
     t.string   "first_name"
     t.string   "last_name"
     t.text     "bio"
+    t.integer  "team_id"
+    t.integer  "player_id"
     t.string   "uid"
     t.string   "provider"
     t.integer  "permission_level",       default: 1

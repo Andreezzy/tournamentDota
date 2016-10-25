@@ -1,4 +1,4 @@
-<%= form_for(@player) do |f| %>
+<%= form_for([@team,@player]) do |f| %>
   <% if @player.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@player.errors.count, "error") %> prohibited this player from being saved:</h2>
@@ -16,6 +16,10 @@
     <%= f.text_field :nickname %>
   </div>
   <div class="field">
+    <%= f.label :dni_dotero %><br>
+    <%= f.text_field :dni_dotero %>
+  </div>
+  <div class="field">
     <%= f.label :name %><br>
     <%= f.text_field :name %>
   </div>
@@ -26,10 +30,6 @@
   <div class="field">
     <%= f.label :phone %><br>
     <%= f.text_field :phone %>
-  </div>
-  <div class="field">
-    <%= f.label :team_id %><br>
-    <%= f.text_field :team_id %>
   </div>
   <div class="actions">
     <%= f.submit %>

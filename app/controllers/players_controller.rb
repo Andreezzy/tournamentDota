@@ -1,6 +1,8 @@
 class PlayersController < ApplicationController
   before_action :set_player, only: [:show, :edit, :update, :destroy]
-
+  before_action :set_team, except: [:index]
+  before_action :authenticate_user!, only: [:create]
+  before_action :authenticate_admin!, except: [:create]
   # GET /players
   # GET /players.json
   def index
@@ -25,10 +27,10 @@ class PlayersController < ApplicationController
   # POST /players.json
   def create
     @player = Player.new(player_params)
-
+    @player.team = @team
     respond_to do |format|
       if @player.save
-        format.html { redirect_to @player, notice: 'Player was successfully created.' }
+        format.html { redirect_to @player.team, notice: 'Player was successfully created.' }
         format.json { render :show, status: :created, location: @player }
       else
         format.html { render :new }
@@ -69,6 +71,9 @@ class PlayersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def player_params
-      params.require(:player).permit(:nickname, :name, :lastname, :phone, :team_id)
+      params.require(:player).permit(:nickname, :name, :lastname, :phone, :team_id, :dni_dotero)
+    end
+    def set_team
+      @team = Team.find(params[:team_id])
     end
 end

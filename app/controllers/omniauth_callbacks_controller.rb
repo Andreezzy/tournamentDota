@@ -8,23 +8,16 @@ class OmniauthCallbacksController < ApplicationController
 			sign_in_and_redirect @user, event: :authentication
 			return
 		end
-
-		session["devise.auth"] = request.env["omniauth.auth"]
-
-		render :edit
-
+		#session["devise.auth"] = request.env["omniauth.auth"]
+		#render :edit
 	end
 
-	def custom_sign_up
-		#raise session["devise.auth"].to_yaml
-#=begin
-	  @user = User.from_omniauth(session["devise.auth"])
-		if @user.update(user_params)
-			sign_in_and_redirect @user, event: :authentication
+	def custom_sign_up		
+		if current_user.player.update(params.require(:player).permit(:nickname, :dni_dotero, :name, :lastname, :phone))
+			sign_in_and_redirect current_user, event: :authentication
 		else
-			render :edit
+			return
 		end
-#=end
 	end
 
 	def failure
